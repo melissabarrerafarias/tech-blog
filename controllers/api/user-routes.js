@@ -39,6 +39,22 @@ router.post('/', (req, res) => {
             console.log(err);
             res.status(500).json(err);
         });
+});
+
+// /api/users/login
+router.post('/login', (req, res) => {
+    User.findOne({
+        where: {
+            username: req.body.username
+        }
+    })
+    .then(dbUserData => {
+        if (!dbUserData) {
+            res.status(400).json({ message: "Sorry, no user found with this username! :(" });
+            return;
+        }
+        res.json({ user: dbUserData })
+    })
 })
 
 // PUT /api/users/1
