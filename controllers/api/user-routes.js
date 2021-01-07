@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Post, Comment } = require('../../models');
 
 // /api/users
 router.get('/', (req, res) => {
@@ -19,7 +19,21 @@ router.get('/:id', (req, res) => {
         attributes: { exclude: ['password'] },
         where: {
             id: req.params.id
-        }
+        },
+        include: [
+            {
+                model: Post,
+                attributes: ['id', 'title', 'created_at']
+            },
+            {
+                model: Comment,
+                attributes: ['id', 'comment_text', 'created_at'],
+                include: {
+                    model: Post,
+                    attributes: ['title']
+                }
+            },
+        ]
     })
         .then(dbUserData => res.json(dbUserData))
         .catch(err => {
@@ -48,21 +62,21 @@ router.post('/login', (req, res) => {
             username: req.body.username
         }
     })
-    .then(dbUserData => {
-        if (!dbUserData) {
-            res.status(400).json({ message: "Sorry, no user found with this username! :(" });
-            return;
-        }
+        .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(400).json({ message: "Sorry, no user found with this username! :(" });
+                return;
+            }
 
-        const validPw = dbUserData.checkPassword(req.body.password);
+            const validPw = dbUserData.checkPassword(req.body.password);
 
-        if (!validPw) {
-            res.status(400).json({ message: "Incorrect Password!"}); 
-            return;
-        }
-        
-        res.json({ user: dbUserData, message: "You are now logged in!"}); 
-    })
+            if (!validPw) {
+                res.status(400).json({ message: "Incorrect Password!" });
+                return;
+            }
+
+            res.json({ user: dbUserData, message: "You are now logged in!" });
+        })
 })
 
 // PUT /api/users/1
