@@ -16,3 +16,17 @@ body, html {
 .post-title {
   font-size: 25px;
 }
+
+/*sign-in, sign-out form styles */ 
+.login-in-btn {
+  background-color: rgba(128, 128, 128, 0.213);
+}
+
+.signup-btn {
+  background-color: rgba(128, 128, 128, 0.213);
+}
+
+.login {
+  font-size: 20px;
+  margin: auto;
+}
