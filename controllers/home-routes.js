@@ -1,36 +1,41 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection'); 
-const { Post, User, Comment } = require('../models'); 
+const sequelize = require('../config/connection');
+const { Post, User, Comment } = require('../models');
 
 router.get('/', (req, res) => {
+    console.log(req.session);
     Post.findAll({
-        attributes: ['id', 'post_description', 'title', 'created_at'], 
+        attributes: ['id', 'post_description', 'title', 'created_at'],
         include: [
             {
-                model: Comment, 
-                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'], 
+                model: Comment,
+                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
                 include: {
-                    model: User, 
+                    model: User,
                     attributes: ["username"]
                 }
-            }, 
+            },
             {
-                model: User, 
+                model: User,
                 attributes: ['username']
             }
         ]
     })
-    .then(dbPostData => {
-        const posts = dbPostData.map(post => post.get({ plain: true }));// loops over each each post and maps each sequelize object into a serialized version of itself (saves in post array)
-        res.render('homepage', { posts });
-    })
-    .catch(err => {
-        console.log(err); 
-        res.status(500).json(err);
-    })
+        .then(dbPostData => {
+            const posts = dbPostData.map(post => post.get({ plain: true }));// loops over each each post and maps each sequelize object into a serialized version of itself (saves in post array)
+            res.render('homepage', { posts });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        })
 });
 
 router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
     res.render('login');
 });
 

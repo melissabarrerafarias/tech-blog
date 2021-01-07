@@ -12,6 +12,16 @@ body, html {
   font-size: 30px;
 }
 
+.btn-no-style {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+  height: 100%;
+  font-size: 30px;
+}
+
 /* post styles */
 .post-title {
   font-size: 25px;
