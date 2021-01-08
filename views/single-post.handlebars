@@ -1,0 +1,16 @@
+<ol>
+        <div class="container">
+            <div class="col-12">
+                <div class="card mt-4">
+                    <div class="card-header">
+                       <p class = "post-title">"{{post.title}}"</p>
+                       <p>by {{post.user.username}} on {{post.created_at}}</p>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{post.post_description}}</p>
+                        <a href="/post/{{post.id}}">{{post.comments.length}} comment(s)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+</ol>
