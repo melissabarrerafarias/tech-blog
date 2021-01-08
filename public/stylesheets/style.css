@@ -43,6 +43,10 @@ body, html {
   background-color: rgba(52, 95, 140, 0.46);
 }
 
+.delete-post-btn {
+  background-color: rgba(255, 108, 108, 0.213);
+}
+
 .create-comment {
   min-height: 100px;
 }

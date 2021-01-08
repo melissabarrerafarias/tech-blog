@@ -1,0 +1,33 @@
+ <div class = "container">
+        <h2 class = "mt-4">
+            Edit Post
+        </h2>
+        <form>
+            <div>
+                <label class="form-label">Title</label>
+                <input name="post-title" type="text" value="{{post.title}}" class = "form-control"/>
+                <label class="form-label mt-4">Description</label>
+                <textarea class="form-control" name="post-description">{{post.post_description}}</textarea>
+            </div>
+            <div>
+                by you on {{formatDate post.created_at}}
+                |
+                <a href="/post/{{post.id}}">{{post.comments.length}} {{pluralValidation "comment" post.comments.length}}</a>
+            </div>
+            <button type="submit" class="btn comment-btn mt-2">Save post</button>
+            <button type="button" class="btn delete-post-btn mt-2">Delete post</button>
+        </form>
+    </div>
+    
+    <div class = "container">
+    <form>
+      <div>
+        <textarea placeholder = "Comment" class = "form-control mt-5"></textarea>
+      </div>
+      <div>
+        <button type="submit" class = "btn comment-btn mt-2">add comment</button>
+      </div>
+    </form>
+</div>
+
+{{> comments post.comments}}
