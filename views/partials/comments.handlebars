@@ -1,0 +1,14 @@
+{{#each this}}
+    <div class="container">
+        <div class="card m-2">
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p class = "comments">{{comment_text}}</p>
+                    <footer class="blockquote-footer"> {{user.username}} <cite class ="comments" title="Source Title">on
+                            {{ formatDate created_at}}</cite></footer>
+                </blockquote>
+            </div>
+            
+        </div>
+    </div>
+    {{/each}}

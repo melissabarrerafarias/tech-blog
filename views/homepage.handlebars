@@ -1,18 +1,5 @@
 <ol>
-    {{#each posts}}
-        <div class="container">
-            <div class="col-12">
-                <div class="card mt-4">
-                    <div class="card-header">
-                       <p class = "post-title">"{{title}}"</p>
-                       <p>by {{user.username}} on {{created_at}}</p>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">{{post_description}}</p>
-                        <a href="/post/{{id}}">{{comments.length}} comment(s)</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{/each}}
+    {{#each posts as |post|}}
+    {{> post-info post}}
+    {{/each}}
 </ol>
