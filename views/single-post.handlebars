@@ -15,6 +15,7 @@
     </div>
 </ol>
 
+{{#if loggedIn}}
 <ol>
     <div class="container">
         <form class="col-12" id = "comment-form">
@@ -27,6 +28,7 @@
         </form>
     </div>
 </ol>
+{{/if}}
 
 <ol>
     {{#each post.comments}}
@@ -45,4 +47,6 @@
     {{/each}}
 </ol>
 
+{{#if loggedIn}}
 <script src="/javascript/comment.js"></script>
+{{/if}}
