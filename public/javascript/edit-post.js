@@ -1,5 +1,4 @@
 async function editForm(event) {
-    console.log("hey this is running")
     event.preventDefault();
   
     const title = document.querySelector('input[name="edited-title"]').value.trim();

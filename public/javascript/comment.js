@@ -1,6 +1,5 @@
 async function commentFormHandler(event) {
     event.preventDefault();
-    console.log("hey");
 
     const comment_text = document.querySelector("#textarea").value.trim();
 
