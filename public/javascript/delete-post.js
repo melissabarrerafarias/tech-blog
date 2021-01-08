@@ -14,5 +14,6 @@ async function deleteForm(event) {
         alert(response.statusText);
       }
   }
+
   
   document.querySelector('#delete-post').addEventListener('click', deleteForm);

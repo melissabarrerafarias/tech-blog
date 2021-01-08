@@ -2,7 +2,8 @@ async function editForm(event) {
     console.log("hey this is running")
     event.preventDefault();
   
-    const title = document.querySelector("#edit-title").value.trim();
+    const title = document.querySelector('input[name="edited-title"]').value.trim();
+    const post_description = document.querySelector('#edited-des').value.trim();
 
     const id = window.location.toString().split('/')[
       window.location.toString().split('/').length - 1
@@ -10,7 +11,8 @@ async function editForm(event) {
     const response = await fetch(`/api/posts/${id}`, {
       method: 'PUT',
       body: JSON.stringify({
-        title
+        title, 
+        post_description
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -18,10 +20,11 @@ async function editForm(event) {
     });
   
     if (response.ok) {
-      document.location.replace('/dashboard');
+      document.location.replace('/dashboard/');
     } else {
+        console.log(response);
       alert(response.statusText);
     }
   }
   
-  document.querySelector('#save-edited').addEventListener('submit', editForm);
+  document.querySelector('#edit-post-form').addEventListener('submit', editForm);

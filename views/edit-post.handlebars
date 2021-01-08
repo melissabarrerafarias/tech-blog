@@ -2,10 +2,10 @@
         <h2 class = "mt-4">
             Edit Post
         </h2>
-        <form>
+        <form id = "edit-post-form">
             <div>
                 <label class="form-label">Title</label>
-                <input id = "edit-title" name="edited-title" type="text" value="{{post.title}}" class = "form-control"/>
+                <input name="edited-title" type="text" value="{{post.title}}" class = "form-control"/>
                 <label class="form-label mt-4">Description</label>
                 <textarea id = "edited-des" class="form-control" name="post-description">{{post.post_description}}</textarea>
             </div>
